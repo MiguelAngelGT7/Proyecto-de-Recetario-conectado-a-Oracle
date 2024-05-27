@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/luis_/Code/familia/src/com/familia/mx/bo/RecetaBO.java</file>
-            <file>file:/C:/Users/luis_/Code/familia/src/com/familia/mx/dao/RecetarioDAO.java</file>
-            <file>file:/C:/Users/luis_/Code/familia/src/com/familia/mx/entity/Recetas.java</file>
-            <file>file:/C:/Users/luis_/Code/familia/src/com/familia/mx/test/Test.java</file>
-            <file>file:/C:/Users/luis_/Code/familia/src/com/familia/mx/vies/FormularioReceta.java</file>
+            <file>file:/C:/Users/guzma/Desktop/code/Proyecto-de-Recetario-conectado-a-Oracle/src/com/familia/mx/test/Test.java</file>
+            <file>file:/C:/Users/guzma/Desktop/code/Proyecto-de-Recetario-conectado-a-Oracle/src/com/familia/mx/entity/Receta.java</file>
+            <file>file:/C:/Users/guzma/Desktop/code/Proyecto-de-Recetario-conectado-a-Oracle/src/com/familia/mx/db/Conexion.java</file>
+            <file>file:/C:/Users/guzma/Desktop/code/Proyecto-de-Recetario-conectado-a-Oracle/src/com/familia/mx/dao/RecetarioDAO.java</file>
+            <file>file:/C:/Users/guzma/Desktop/code/Proyecto-de-Recetario-conectado-a-Oracle/src/com/familia/mx/vies/FormularioReceta.java</file>
+            <file>file:/C:/Users/guzma/Desktop/code/Proyecto-de-Recetario-conectado-a-Oracle/src/com/familia/mx/bo/RecetaBO.java</file>
         </group>
     </open-files>
 </project-private>

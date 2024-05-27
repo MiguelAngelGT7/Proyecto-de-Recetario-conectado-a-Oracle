@@ -4,6 +4,10 @@
  */
 package com.familia.mx.vies;
 
+import com.familia.mx.bo.RecetaBO;
+import com.familia.mx.entity.Recetas;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luis_
@@ -13,8 +17,25 @@ public class FormularioReceta extends javax.swing.JFrame {
     /**
      * Creates new form FormularioReceta
      */
+    private RecetaBO recetabo = new RecetaBO();
+    
     public FormularioReceta() {
         initComponents();
+        listarReceta();
+        idMax();
+        setTitle("FORMULARIO RECETARIO");
+        setLocationRelativeTo(null);
+        setResizable(false);
+    }
+    
+    // nuevo
+    public void listarReceta(){
+        
+       recetabo.listarReceta(tbRecetario);
+    }
+    
+    public void idMax(){
+        txtId_recetario.setText(recetabo.getMaxid()+"");
     }
 
     /**
@@ -143,15 +164,20 @@ public class FormularioReceta extends javax.swing.JFrame {
 
         tbRecetario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        tbRecetario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbRecetarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbRecetario);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 460, 430));
@@ -167,6 +193,11 @@ public class FormularioReceta extends javax.swing.JFrame {
 
         btnAgregar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 140, 50));
 
         btnModificar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
@@ -180,10 +211,20 @@ public class FormularioReceta extends javax.swing.JFrame {
 
         btnEliminar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
         btnEliminar.setText("eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 140, 50));
 
         btnLimpiar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
         btnLimpiar.setText("limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, 140, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 540));
@@ -196,13 +237,97 @@ public class FormularioReceta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtId_recetarioActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+       if(txtId_recetario.getText().isEmpty() || txtId_comentario.getText().isEmpty() || txtId_clasificacion.getText().isEmpty() || txtNombre.getText().isEmpty()
+               || txtDescripcion.getText().isEmpty() || txtTiempoEnCocina.getText().isEmpty()|| txtTiempoDeCoccion.getText().isEmpty() || txtUtencilios.getText().isEmpty()
+               || txtProcedimiento.getText().isEmpty() || txtNotas.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "llene todos los campos ");
+       }else{
+            Recetas recetario = new Recetas();
+            recetario.setId_recetario(Integer.parseInt(txtId_recetario.getText()));
+            recetario.setNombre_receta(txtNombre.getText());
+            recetario.setDescripcion_receta(txtDescripcion.getText());
+            recetario.setTiempo_en_cocina(txtTiempoEnCocina.getText());
+            recetario.setTiempo_coccion(txtTiempoDeCoccion.getText());
+            recetario.setUtencilios(txtUtencilios.getText());
+            recetario.setProcedimiento_recetas(txtProcedimiento.getText());
+            recetario.setNotas(txtNotas.getText());
+           String mensaje = recetabo.agregarReceta(recetario);
+           JOptionPane.showMessageDialog(null, mensaje);
+           limpiar();
+           listarReceta();
+       }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+       System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+       if(txtId_recetario.getText().isEmpty() || txtId_comentario.getText().isEmpty() || txtId_clasificacion.getText().isEmpty() || txtNombre.getText().isEmpty()
+               || txtDescripcion.getText().isEmpty() || txtTiempoEnCocina.getText().isEmpty()|| txtTiempoDeCoccion.getText().isEmpty() || txtUtencilios.getText().isEmpty()
+               || txtProcedimiento.getText().isEmpty() || txtNotas.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "llene todos los campos ");
+       }else{
+           String mensaje = recetabo.eliminarReceta(Integer.parseInt(txtId_recetario.getText()));
+           JOptionPane.showMessageDialog(null, mensaje);
+           limpiar();
+           listarReceta();
+       }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+         if(txtId_recetario.getText().isEmpty() || txtId_comentario.getText().isEmpty() || txtId_clasificacion.getText().isEmpty() || txtNombre.getText().isEmpty()
+               || txtDescripcion.getText().isEmpty() || txtTiempoEnCocina.getText().isEmpty()|| txtTiempoDeCoccion.getText().isEmpty() || txtUtencilios.getText().isEmpty()
+               || txtProcedimiento.getText().isEmpty() || txtNotas.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "llene todos los campos ");
+       }else{
+            Recetas recetario = new Recetas();
+            recetario.setId_recetario(Integer.parseInt(txtId_recetario.getText()));
+            recetario.setNombre_receta(txtNombre.getText());
+            recetario.setDescripcion_receta(txtDescripcion.getText());
+            recetario.setTiempo_en_cocina(txtTiempoEnCocina.getText());
+            recetario.setTiempo_coccion(txtTiempoDeCoccion.getText());
+            recetario.setUtencilios(txtUtencilios.getText());
+            recetario.setProcedimiento_recetas(txtProcedimiento.getText());
+            recetario.setNotas(txtNotas.getText());
+           String mensaje = recetabo.agregarReceta(recetario);
+           JOptionPane.showMessageDialog(null, mensaje);
+           limpiar();
+           listarReceta();
+       }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tbRecetarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRecetarioMouseClicked
+        int  seleccion = tbRecetario.rowAtPoint(evt.getPoint());
+        txtId_recetario.setText(tbRecetario.getValueAt(seleccion, 0)+"");
+        txtId_comentario.setText(tbRecetario.getValueAt(seleccion, 1)+"");
+        txtId_clasificacion.setText(tbRecetario.getValueAt(seleccion, 2)+"");
+        txtNombre.setText(tbRecetario.getValueAt(seleccion, 3)+"");
+        txtDescripcion.setText(tbRecetario.getValueAt(seleccion, 4)+"");
+        txtTiempoEnCocina.setText(tbRecetario.getValueAt(seleccion, 5)+"");
+        txtTiempoDeCoccion.setText(tbRecetario.getValueAt(seleccion, 6)+"");
+        txtUtencilios.setText(tbRecetario.getValueAt(seleccion, 7)+"");
+        txtProcedimiento.setText(tbRecetario.getValueAt(seleccion, 8)+"");
+        txtNotas.setText(tbRecetario.getValueAt(seleccion, 9)+"");
+    }//GEN-LAST:event_tbRecetarioMouseClicked
+
+    public void limpiar(){
+       txtId_recetario.setText("");
+       txtId_comentario.setText("");
+       txtId_clasificacion.setText("");
+       txtNombre.setText("");
+       txtDescripcion.setText("");
+       txtTiempoEnCocina.setText("");
+       txtTiempoDeCoccion.setText("");
+       txtUtencilios.setText("");
+       txtProcedimiento.setText("");
+       txtNotas.setText(""); 
+       idMax();
+    }
     /**
      * @param args the command line arguments
      */

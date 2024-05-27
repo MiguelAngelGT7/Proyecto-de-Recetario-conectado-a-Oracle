@@ -4,6 +4,10 @@ import com.familia.mx.entity.Recetas;
 import java.sql.Connection;
 import com.familia.mx.dao.RecetarioDAO;
 import com.familia.mx.db.Conexion;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -71,7 +75,23 @@ public String eliminarReceta(int id ){
     return mensaje;
 }
 
-public void listarReceta(){
-
+public void listarReceta(JTable tabla ){
+    Connection conneccion = Conexion.getConnection();
+    recetariodao.listarReceta(conneccion, tabla);
+    try {
+        conneccion.close();
+    } catch (SQLException ex) {
+    System.out.println(ex.getMessage());
+    }
+  }
+public int getMaxid(){
+      Connection conneccion = Conexion.getConnection();
+    int id = recetariodao.getMaxid(conneccion);
+    try {
+        conneccion.close();
+    } catch (SQLException ex) {
+    System.out.println(ex.getMessage());
+    }
+    return id;
 }
 }
