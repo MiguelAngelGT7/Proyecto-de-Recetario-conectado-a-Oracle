@@ -5,6 +5,7 @@
 package com.familia.mx.vies;
 
 import com.familia.mx.bo.RecetaBO;
+import com.familia.mx.entity.Receta;
 import com.familia.mx.entity.Recetas;
 import javax.swing.JOptionPane;
 
@@ -272,7 +273,17 @@ public class FormularioReceta extends javax.swing.JFrame {
                || txtProcedimiento.getText().isEmpty() || txtNotas.getText().isEmpty()){
            JOptionPane.showMessageDialog(null, "llene todos los campos ");
        }else{
-           String mensaje = recetabo.eliminarReceta(Integer.parseInt(txtId_recetario.getText()));
+          // String mensaje = recetabo.eliminarReceta(Integer.parseInt(txtId_recetario.getText()));
+           Recetas recetario = new Recetas();
+           
+            recetario.setNombre_receta(txtNombre.getText());
+            recetario.setDescripcion_receta(txtDescripcion.getText());
+            recetario.setTiempo_en_cocina(txtTiempoEnCocina.getText());
+            recetario.setTiempo_coccion(txtTiempoDeCoccion.getText());
+            recetario.setUtencilios(txtUtencilios.getText());
+            recetario.setProcedimiento_recetas(txtProcedimiento.getText());
+             recetario.setNotas(txtNotas.getText());
+             String mensaje = recetabo.agregarReceta(recetario);
            JOptionPane.showMessageDialog(null, mensaje);
            limpiar();
            listarReceta();
@@ -294,7 +305,8 @@ public class FormularioReceta extends javax.swing.JFrame {
             recetario.setUtencilios(txtUtencilios.getText());
             recetario.setProcedimiento_recetas(txtProcedimiento.getText());
             recetario.setNotas(txtNotas.getText());
-           String mensaje = recetabo.agregarReceta(recetario);
+            String mensaje = recetabo.eliminarReceta(Integer.parseInt(txtId_recetario.getText()));
+           //String mensaje = recetabo.agregarReceta(recetario);
            JOptionPane.showMessageDialog(null, mensaje);
            limpiar();
            listarReceta();
