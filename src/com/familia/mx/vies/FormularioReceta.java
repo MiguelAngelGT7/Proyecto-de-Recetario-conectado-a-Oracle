@@ -5,7 +5,7 @@
 package com.familia.mx.vies;
 
 import com.familia.mx.bo.RecetaBO;
-import com.familia.mx.entity.Receta;
+//import com.familia.mx.entity.Receta;
 import com.familia.mx.entity.Recetas;
 import javax.swing.JOptionPane;
 
@@ -154,6 +154,11 @@ public class FormularioReceta extends javax.swing.JFrame {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 210, -1));
 
         txtProcedimiento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtProcedimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProcedimientoActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtProcedimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 330, -1));
 
         jLabel11.setFont(new java.awt.Font("Sitka Display", 1, 24)); // NOI18N
@@ -276,6 +281,7 @@ public class FormularioReceta extends javax.swing.JFrame {
           // String mensaje = recetabo.eliminarReceta(Integer.parseInt(txtId_recetario.getText()));
            Recetas recetario = new Recetas();
            
+           
             recetario.setNombre_receta(txtNombre.getText());
             recetario.setDescripcion_receta(txtDescripcion.getText());
             recetario.setTiempo_en_cocina(txtTiempoEnCocina.getText());
@@ -291,10 +297,10 @@ public class FormularioReceta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         if(txtId_recetario.getText().isEmpty() || txtId_comentario.getText().isEmpty() || txtId_clasificacion.getText().isEmpty() || txtNombre.getText().isEmpty()
-               || txtDescripcion.getText().isEmpty() || txtTiempoEnCocina.getText().isEmpty()|| txtTiempoDeCoccion.getText().isEmpty() || txtUtencilios.getText().isEmpty()
-               || txtProcedimiento.getText().isEmpty() || txtNotas.getText().isEmpty()){
-           JOptionPane.showMessageDialog(null, "llene todos los campos ");
+         if(txtId_recetario.getText().isEmpty()){//txtId_recetario.getText().isEmpty() || txtId_comentario.getText().isEmpty() || txtId_clasificacion.getText().isEmpty() || txtNombre.getText().isEmpty()
+              // || txtDescripcion.getText().isEmpty() || txtTiempoEnCocina.getText().isEmpty()|| txtTiempoDeCoccion.getText().isEmpty() || txtUtencilios.getText().isEmpty()
+               //|| txtProcedimiento.getText().isEmpty() || txtNotas.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "llene el campos id_recetario ");
        }else{
             Recetas recetario = new Recetas();
             recetario.setId_recetario(Integer.parseInt(txtId_recetario.getText()));
@@ -326,6 +332,10 @@ public class FormularioReceta extends javax.swing.JFrame {
         txtProcedimiento.setText(tbRecetario.getValueAt(seleccion, 8)+"");
         txtNotas.setText(tbRecetario.getValueAt(seleccion, 9)+"");
     }//GEN-LAST:event_tbRecetarioMouseClicked
+
+    private void txtProcedimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProcedimientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProcedimientoActionPerformed
 
     public void limpiar(){
        txtId_recetario.setText("");

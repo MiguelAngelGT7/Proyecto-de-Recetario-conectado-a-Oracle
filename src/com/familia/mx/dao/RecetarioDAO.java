@@ -16,21 +16,42 @@ public class RecetarioDAO {
 
 public String agregarReceta(Connection conneccion, Recetas receta ){
     PreparedStatement pst = null;
-    String sql = "INSERT INTO Recetas (id_comentario, id_clasificacion, nombre_receta, descripcion_receta, \n" +
-"tiempo_en_cocina, tiempo_coccion, utensilios, procedimiento_recetas, notas) VALUES(?,?,?,?,?,?,?,?,?); ";
+    String sql =" INSERT INTO RECETAS (\n" +
+"  2      ID_RECETARIO,\n" +
+"  3      ID_COMENTARIO,\n" +
+"  4      ID_CLASIFICACION,\n" +
+"  5      NOMBRE_RECETA,\n" +
+"  6      DESCRIPCION_RECETA,\n" +
+"  7      TIEMPO_EN_COCINA,\n" +
+"  8      TIEMPO_COCCION,\n" +
+"  9      UTENSILIOS,\n" +
+" 10      PROCEDIMIENTO_RECETAS,\n" +
+" 11      NOTAS\n" +
+" 12  ) VALUES (?,?,?,?,?,?,?,?,?,?); "; 
+            
+            
+            
+          //  "INSERT INTO Recetas (ID_RECETARIO,ID_COMENTARIO,ID_CLASIFICACION,NOMBRE_RECETA, "+
+            //"DESCRIPCION_RECETA,TIEMPO_EN_COCINA,TIEMPO_COCCION,UTENCILIOS,PROCEDIMIENTO_RECETAS, NOTAS) "+
+            //"VALUES(?,?,?,?,?,?,?,?,?,?); ";
     
     try {
         pst = conneccion.prepareStatement(sql);
         pst.setInt(1, receta.getId_recetario());
-        pst.setString(2, receta.getNombre_receta());
-        pst.setString(3, receta.getDescripcion_receta());
-        pst.setString(4, receta.getTiempo_en_cocina());
-        pst.setString(5, receta.getTiempo_coccion());
-        pst.setString(6, receta.getUtencilios());
-        pst.setString(7, receta.getProcedimiento_recetas());
-        pst.setString(8, receta.getNombre_receta());
-        mensaje = "Guardado Correctamente";
+        pst.setInt(2, receta.getId_comentario());
+        pst.setInt(3, receta.getId_clasificacion());
+        pst.setString(4, receta.getNombre_receta());
+        pst.setString(5, receta.getDescripcion_receta());
+        pst.setString(6, receta.getTiempo_en_cocina());
+        pst.setString(7, receta.getTiempo_coccion());
+        pst.setString(8, receta.getUtencilios());
+        pst.setString(9, receta.getProcedimiento_recetas());
+        pst.setString(10, receta.getNotas());
         pst.execute();
+        
+        
+        mensaje = "Guardado Correctamente";
+        
         pst.close();
     } catch (SQLException e) {
         mensaje = "No se pudo guardado Correctamente \n" + e.getMessage();
@@ -64,7 +85,7 @@ public String modificarReceta(Connection conneccion, Recetas receta ){
 
 public String eliminarReceta(Connection conneccion, int id ){
      PreparedStatement pst = null;
-    String sql = "DELETE FROM Recetas WHERE  id_comentario = ? ";
+    String sql = "DELETE FROM Recetas WHERE  id_recetario = ? ";
     
     try {
         pst = conneccion.prepareStatement(sql);

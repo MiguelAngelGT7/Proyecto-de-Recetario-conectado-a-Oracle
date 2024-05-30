@@ -14,6 +14,9 @@ public class Test {
     String mensaje = "";
     
     public void insertar(){
+        recetario.setId_recetario(2);
+        recetario.setId_comentario(2);
+        recetario.setId_clasificacion(2);
         recetario.setNombre_receta("pay de queso");
         recetario.setDescripcion_receta("Un rico pay de queso especial para cualquier ocacion");
         recetario.setTiempo_en_cocina("1 día");
@@ -53,8 +56,8 @@ public class Test {
     
     public static void main(String[] args){
         Test test = new Test();
-       // test.insertar();
+        test.insertar();
        //test.modificar();
-       test.eliminar();
+       //test.eliminar();
     }
 }
